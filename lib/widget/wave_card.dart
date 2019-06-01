@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class WaveCard extends StatelessWidget {
@@ -16,7 +17,6 @@ class WaveCard extends StatelessWidget {
 }
 
 class WavePainter extends CustomPainter {
-
   final Color primaryColor;
   final List<Color> colors = List(4);
   final List<int> radius = const [10, 30, 55, 65];
@@ -58,5 +58,24 @@ class WavePainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return null;
+  }
+}
+
+class WaveCards extends StatelessWidget {
+  WaveCards({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    const padding = EdgeInsets.all(10);
+    return Center(
+      child: ListView(
+        children: <Widget>[
+          Padding(padding: padding, child: WaveCard(Colors.cyan)),
+          Padding(padding: padding, child: WaveCard(Colors.lightGreen)),
+          Padding(padding: padding, child: WaveCard(Colors.green)),
+          Padding(padding: padding, child: WaveCard(Colors.blue)),
+        ],
+      ),
+    );
   }
 }
