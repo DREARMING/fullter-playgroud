@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/widget/PositionedTiles.dart';
+import 'package:flutter_playground/widget/dragger/page_dragger_widget.dart';
+import 'package:flutter_playground/widget/global_keys_demo.dart';
 import 'package:flutter_playground/widget/wave_card.dart';
 
 void main() => runApp(MyApp());
@@ -16,11 +18,10 @@ class Item {
 
 List<Item> pages = [
   Item("Wave Card", (ctx) => WaveCards()),
-  Item(
-    "Positioned Tiles",
-    (ctx) => PositionedTiles(),
-    desc: "Lear How to Use Key",
-  )
+  Item("Positioned Tiles", (ctx) => PositionedTiles(),
+      desc: "Lear How to Use Key"),
+  Item("Using GlobalKey to Reuse Widget", (ctx) => GlobalKeysReuseWidget()),
+  Item("Page Dragger Widget", (ctx) => PageDraggerWidget())
 ];
 
 class MyApp extends StatelessWidget {

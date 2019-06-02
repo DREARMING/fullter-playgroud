@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_playground/widget/dragger/page_drager.dart';
 
 class PageDraggerWidget extends StatefulWidget {
@@ -9,7 +10,7 @@ class PageDraggerWidget extends StatefulWidget {
 }
 
 class _PageDraggerState extends State<PageDraggerWidget> {
-  double percent = 0.2;
+  double percent = 0.0;
   StreamController<SlideUpdate> slideUpdateStream;
 
   void onStreamData(SlideUpdate slideUpdate) {
@@ -30,14 +31,12 @@ class _PageDraggerState extends State<PageDraggerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = (100 * percent).roundToDouble();
+    final w = MediaQuery.of(context).size.width;
+    final h = MediaQuery.of(context).size.height;
     return Stack(
       children: <Widget>[
-        Container(
-            constraints: BoxConstraints(),
-            child: Center(
-              child: Text("$fontSize", style: TextStyle(fontSize: fontSize)),
-            )),
+        Container(width: percent * w, height: percent * h, color: Colors.teal),
+        Center(child: Text("Touch and dragger")),
         PageDragger(slideUpdateStream: this.slideUpdateStream)
       ],
     );

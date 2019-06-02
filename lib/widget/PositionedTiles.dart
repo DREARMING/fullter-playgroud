@@ -13,15 +13,27 @@ class PositionedTilesState extends State<PositionedTiles> {
   void initState() {
     super.initState();
     tiles = [
-      StatelessColorfulTile(),
-      StatelessColorfulTile(),
+      Padding(
+        key: UniqueKey(),
+        padding: const EdgeInsets.all(8.0),
+        child: StatefulColorfulTile(),
+      ),
+      Padding(
+        key: UniqueKey(),
+        padding: const EdgeInsets.all(8.0),
+        child: StatefulColorfulTile(),
+      ),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(child: Row(children: tiles)),
+        body: SafeArea(
+            child: Center(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: tiles))),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.sentiment_very_satisfied), onPressed: swapTiles));
   }
