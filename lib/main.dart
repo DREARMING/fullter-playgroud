@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/widget/PositionedTiles.dart';
 import 'package:flutter_playground/widget/dragger/page_dragger_widget.dart';
 import 'package:flutter_playground/widget/global_keys_demo.dart';
 import 'package:flutter_playground/widget/intervalprogress.dart';
+import 'package:flutter_playground/widget/localization_delegate.dart';
+import 'package:flutter_playground/widget/search_page.dart';
 import 'package:flutter_playground/widget/wave_card.dart';
 
 void main() => runApp(MyApp());
@@ -24,13 +27,22 @@ List<Item> pages = [
   Item("Using GlobalKey to Reuse Widget", (ctx) => GlobalKeysReuseWidget()),
   Item("Page Dragger Widget", (ctx) => PageDraggerWidget()),
   Item("IntervalProgressBar", (ctx) => IntervalProgressPage(),
-      desc: "Custom Painter")
+      desc: "Custom Painter"),
+  Item(
+      "Search",
+      (ctx) => RaisedButton(
+          child: Text("Show Search"),
+          onPressed: () => showSearch(context: ctx, delegate: Search())),
+      desc: "Use SearchDelegate"),
 ];
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        CustomLocalizationDelegate(),
+      ],
       title: 'Flutter',
       theme: ThemeData(
         primarySwatch: Colors.teal,
